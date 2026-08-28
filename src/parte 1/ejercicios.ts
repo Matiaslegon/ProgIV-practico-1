@@ -196,8 +196,7 @@ export function filtrar<T>(elementos: T[], callback: (elemento: T) => boolean): 
 //
 // Si ningún elemento cumple, devolver undefined.
 export function buscar<T>(elementos: T[], callback: (elemento: T) => boolean): T | undefined {
-  // TODO
-  throw new Error("Implementar");
+  return elementos.find((elemento) => callback(elemento));
 }
 
 // -----------------------------------------------------------------------------
