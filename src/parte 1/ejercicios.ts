@@ -57,8 +57,7 @@ export function obtenerMayoresDeEdad(alumnos: Alumno[]): Alumno[] {
 // Un alumno aprueba cuando su nota es mayor o igual a 6.
 // Devolver los alumnos aprobados.
 export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.filter((alumno) => alumno.nota >= 6);
 }
 
 // -----------------------------------------------------------------------------
@@ -271,7 +270,7 @@ export function obtenerEstadisticas(alumnos: Alumno[]): Estadisticas {
 console.log(obtenerNombres(alumnos).slice(0, 10));
 // console.log(obtenerNombresCompletos(alumnos).slice(0, 10));
 // console.log(obtenerMayoresDeEdad(alumnos).length);
-// console.log(obtenerAprobados(alumnos).length);
+console.log(obtenerAprobados(alumnos).length);
 // console.log(calcularPromedio(alumnos));
 // console.log(obtenerMejorAlumno(alumnos));
 // console.log(buscarPorLegajo(alumnos, 500));
