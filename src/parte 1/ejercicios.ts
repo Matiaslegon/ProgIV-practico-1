@@ -88,8 +88,7 @@ export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
 // Buscar un alumno por su número de legajo.
 // Si no existe, devolver undefined.
 export function buscarPorLegajo(alumnos: Alumno[], legajo: number): Alumno | undefined {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.find((alumno) => alumno.legajo === legajo);
 }
 
 // -----------------------------------------------------------------------------
@@ -273,7 +272,7 @@ console.log(obtenerNombres(alumnos).slice(0, 10));
 console.log(obtenerAprobados(alumnos).length);
 // console.log(calcularPromedio(alumnos));
 // console.log(obtenerMejorAlumno(alumnos));
-// console.log(buscarPorLegajo(alumnos, 500));
+console.log(buscarPorLegajo(alumnos, 500));
 // console.log(existeDesaprobado(alumnos));
 // console.log(todosAprobaron(alumnos));
 // console.log(cantidadAprobados(alumnos));
