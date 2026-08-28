@@ -117,8 +117,7 @@ export function existeDesaprobado(alumnos: Alumno[]): boolean {
 // Devolver true solamente si todos los alumnos tienen nota mayor o igual a 6.
 // Resolver utilizando every.
 export function todosAprobaron(alumnos: Alumno[]): boolean {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.every((alumno) => alumno.nota >= 6);
 }
 
 // -----------------------------------------------------------------------------
@@ -274,7 +273,7 @@ console.log(obtenerAprobados(alumnos).length);
 // console.log(obtenerMejorAlumno(alumnos));
 console.log(buscarPorLegajo(alumnos, 500));
 // console.log(existeDesaprobado(alumnos));
-// console.log(todosAprobaron(alumnos));
+console.log(todosAprobaron(alumnos));
 // console.log(cantidadAprobados(alumnos));
 // console.log(sumarEdades(alumnos));
 // console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
