@@ -15,7 +15,8 @@
  * La base contiene 1000 alumnos.
  */
 
-import { alumnos, type Alumno } from "../models/db.js";
+import { alumnos, type Alumno[] } from "../models/db.js";
+import { Alumno } from "../parte 2/clase-alumno.js";
 
 // -----------------------------------------------------------------------------
 // EJERCICIO 1 - Obtener nombres
@@ -38,8 +39,9 @@ export function obtenerNombres(alumnos: Alumno[]): string[] {
 // Ejemplo:
 // ["Juan Pérez", "María García", ...]
 export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
-  // TODO
-  throw new Error("Implementar");
+    const NombresCompletos = alumnos.map((alumno)  => '${alumno.nombre} ${alumno.apellido}')
+    return NombresCompletos
+    throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
@@ -68,8 +70,18 @@ export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
 //
 // Si el arreglo está vacío, devolver 0.
 export function calcularPromedio(alumnos: Alumno[]): number {
-  // TODO
-  throw new Error("Implementar");
+    if (alumnos.length === 0) {
+        return 0;
+    }
+
+
+const sumaNotas = alumnos.reduce((acc, alumno) => {
+    return acc + alumno.nota
+
+});
+
+const promediodeNotas = sumaNotas / alumnos.length
+return promediodeNotas
 }
 
 // -----------------------------------------------------------------------------
@@ -97,8 +109,9 @@ export function buscarPorLegajo(alumnos: Alumno[], legajo: number): Alumno | und
 // Buscar el primer alumno cuyo nombre coincida con el recibido.
 // La comparación debe ser exacta.
 export function buscarPorNombre(alumnos: Alumno[], nombre: string): Alumno | undefined {
-  // TODO
-  throw new Error("Implementar");
+    const alumno= alumnos.find(alumno=>alumno.nombre === nombre) 
+    return alumno;
+    
 }
 
 // -----------------------------------------------------------------------------
@@ -126,8 +139,11 @@ export function todosAprobaron(alumnos: Alumno[]): boolean {
 // Devolver la cantidad de alumnos aprobados.
 // Resolver utilizando filter y length.
 export function cantidadAprobados(alumnos: Alumno[]): number {
-  // TODO
-  throw new Error("Implementar");
+    
+    return  alumnos.filter(function(alumno){
+        return alumno.nota >= 6;
+    }).length;
+    
 }
 
 // -----------------------------------------------------------------------------
@@ -170,8 +186,10 @@ export function calcularPromedioPorCiudad(alumnos: Alumno[], ciudad: string): nu
 // transformar([1, 2, 3], n => n * 2)
 // -> [2, 4, 6]
 export function transformar<T, R>(elementos: T[], callback: (elemento: T) => R): R[] {
-  // TODO
-  throw new Error("Implementar");
+    const transformado = elementos.map(callback)
+        return transformado;
+    
+    
 }
 
 // -----------------------------------------------------------------------------
