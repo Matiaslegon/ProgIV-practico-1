@@ -50,7 +50,7 @@ export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
 // -----------------------------------------------------------------------------
 // Devolver solamente los alumnos que tengan 18 años o más.
 export function obtenerMayoresDeEdad(alumnos: Alumno[]): Alumno[] {
-  // TODO
+  return alumnos.filter((alumno) => alumno.edad >= 18);
   throw new Error("Implementar");
 }
 
@@ -89,8 +89,11 @@ export function calcularPromedio(alumnos: Alumno[]): number {
 // Devolver el alumno que tenga la nota más alta.
 // Si el arreglo está vacío, devolver undefined.
 export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
-  // TODO
-  throw new Error("Implementar");
+    if (alumnos.length === 0) {return undefined;}
+
+    return alumnos.reduce((alumno, mejornota) =>
+      alumno.nota > mejornota.nota ? alumno : mejornota);
+    
 }
 
 // -----------------------------------------------------------------------------
@@ -124,8 +127,7 @@ export function buscarPorNombre(
 // Devolver true si existe al menos un alumno con nota menor a 6.
 // Resolver utilizando some.
 export function existeDesaprobado(alumnos: Alumno[]): boolean {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.some((alumno) => alumno.nota < 6);
 }
 
 // -----------------------------------------------------------------------------
@@ -154,8 +156,7 @@ export function cantidadAprobados(alumnos: Alumno[]): number {
 // Calcular la suma de las edades de todos los alumnos.
 // Resolver utilizando reduce.
 export function sumarEdades(alumnos: Alumno[]): number {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.reduce((suma, alumno) => suma + alumno.nota, 0);
 }
 
 // -----------------------------------------------------------------------------
