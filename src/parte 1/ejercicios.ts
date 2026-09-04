@@ -38,7 +38,9 @@ export function obtenerNombres(alumnos: Alumno[]): string[] {
 // Ejemplo:
 // ["Juan Pérez", "María García", ...]
 export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
-  const NombresCompletos = alumnos.map((alumno) => "${alumno.nombre} ${alumno.apellido}");
+  const NombresCompletos = alumnos.map(
+    (alumno) => "${alumno.nombre} ${alumno.apellido}",
+  );
   return NombresCompletos;
   throw new Error("Implementar");
 }
@@ -75,7 +77,7 @@ export function calcularPromedio(alumnos: Alumno[]): number {
 
   const sumaNotas = alumnos.reduce((acc, alumno) => {
     return acc + alumno.nota;
-  });
+  }, 0);
 
   const promediodeNotas = sumaNotas / alumnos.length;
   return promediodeNotas;
@@ -96,7 +98,10 @@ export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
 // -----------------------------------------------------------------------------
 // Buscar un alumno por su número de legajo.
 // Si no existe, devolver undefined.
-export function buscarPorLegajo(alumnos: Alumno[], legajo: number): Alumno | undefined {
+export function buscarPorLegajo(
+  alumnos: Alumno[],
+  legajo: number,
+): Alumno | undefined {
   return alumnos.find((alumno) => alumno.legajo === legajo);
 }
 
@@ -105,7 +110,10 @@ export function buscarPorLegajo(alumnos: Alumno[], legajo: number): Alumno | und
 // -----------------------------------------------------------------------------
 // Buscar el primer alumno cuyo nombre coincida con el recibido.
 // La comparación debe ser exacta.
-export function buscarPorNombre(alumnos: Alumno[], nombre: string): Alumno | undefined {
+export function buscarPorNombre(
+  alumnos: Alumno[],
+  nombre: string,
+): Alumno | undefined {
   const alumno = alumnos.find((alumno) => alumno.nombre === nombre);
   return alumno;
 }
@@ -154,7 +162,10 @@ export function sumarEdades(alumnos: Alumno[]): number {
 // EJERCICIO 13 - Alumnos de una ciudad
 // -----------------------------------------------------------------------------
 // Devolver los alumnos que pertenezcan a la ciudad recibida.
-export function obtenerAlumnosDeCiudad(alumnos: Alumno[], ciudad: string): Alumno[] {
+export function obtenerAlumnosDeCiudad(
+  alumnos: Alumno[],
+  ciudad: string,
+): Alumno[] {
   return alumnos.filter((alumno) => alumno.ciudad === ciudad);
 }
 
@@ -165,7 +176,10 @@ export function obtenerAlumnosDeCiudad(alumnos: Alumno[], ciudad: string): Alumn
 // Si no hay alumnos en esa ciudad, devolver 0.
 //
 // Se recomienda reutilizar funciones anteriores.
-export function calcularPromedioPorCiudad(alumnos: Alumno[], ciudad: string): number {
+export function calcularPromedioPorCiudad(
+  alumnos: Alumno[],
+  ciudad: string,
+): number {
   // TODO
   throw new Error("Implementar");
 }
@@ -179,7 +193,10 @@ export function calcularPromedioPorCiudad(alumnos: Alumno[], ciudad: string): nu
 // Ejemplo:
 // transformar([1, 2, 3], n => n * 2)
 // -> [2, 4, 6]
-export function transformar<T, R>(elementos: T[], callback: (elemento: T) => R): R[] {
+export function transformar<T, R>(
+  elementos: T[],
+  callback: (elemento: T) => R,
+): R[] {
   const transformado = elementos.map(callback);
   return transformado;
 }
@@ -193,7 +210,10 @@ export function transformar<T, R>(elementos: T[], callback: (elemento: T) => R):
 // Ejemplo:
 // filtrar([1, 2, 3, 4], n => n % 2 === 0)
 // -> [2, 4]
-export function filtrar<T>(elementos: T[], callback: (elemento: T) => boolean): T[] {
+export function filtrar<T>(
+  elementos: T[],
+  callback: (elemento: T) => boolean,
+): T[] {
   // TODO
   throw new Error("Implementar");
 }
@@ -205,7 +225,10 @@ export function filtrar<T>(elementos: T[], callback: (elemento: T) => boolean): 
 // el criterio indicado por el callback.
 //
 // Si ningún elemento cumple, devolver undefined.
-export function buscar<T>(elementos: T[], callback: (elemento: T) => boolean): T | undefined {
+export function buscar<T>(
+  elementos: T[],
+  callback: (elemento: T) => boolean,
+): T | undefined {
   return elementos.find((elemento) => callback(elemento));
 }
 
@@ -218,7 +241,10 @@ export function buscar<T>(elementos: T[], callback: (elemento: T) => boolean): T
 // Ejemplos:
 // calcularTotal(alumnos, alumno => alumno.edad)
 // calcularTotal(alumnos, alumno => alumno.nota)
-export function calcularTotal(alumnos: Alumno[], callback: (alumno: Alumno) => number): number {
+export function calcularTotal(
+  alumnos: Alumno[],
+  callback: (alumno: Alumno) => number,
+): number {
   // TODO
   throw new Error("Implementar");
 }
