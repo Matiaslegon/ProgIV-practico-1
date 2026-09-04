@@ -211,12 +211,9 @@ export function transformar<T, R>(
 // Ejemplo:
 // filtrar([1, 2, 3, 4], n => n % 2 === 0)
 // -> [2, 4]
-export function filtrar<T>(
-  elementos: T[],
-  callback: (elemento: T) => boolean,
-): T[] {
-  // TODO
-  throw new Error("Implementar");
+export function filtrar<T>(elementos: T[],callback: (elemento: T) => boolean,): T[] {
+    const elementosTrue = elementos.filter(callback);
+    return elementosTrue;
 }
 
 // -----------------------------------------------------------------------------
@@ -266,9 +263,17 @@ export function calcularTotal(
 //
 // Resolver utilizando reduce.
 export function agruparPorCiudad(alumnos: Alumno[]): Record<string, Alumno[]> {
-  // TODO
-  throw new Error("Implementar");
+  const alumnosPorCiudad = alumnos.reduce((acumulador, alumno) => {
+    if(!(acumulador[alumno.ciudad])) {
+        acumulador[alumno.ciudad]=[];}
+
+    acumulador[alumno.ciudad].push(alumno);
+
+    return acumulador;} , {} as Record<string, Alumno[]>);
+
+    return alumnosPorCiudad;
 }
+
 
 // -----------------------------------------------------------------------------
 // EJERCICIO 20 - Estadísticas generales
