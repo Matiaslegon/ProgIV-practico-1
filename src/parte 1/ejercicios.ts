@@ -51,7 +51,6 @@ export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
 // Devolver solamente los alumnos que tengan 18 años o más.
 export function obtenerMayoresDeEdad(alumnos: Alumno[]): Alumno[] {
   return alumnos.filter((alumno) => alumno.edad >= 18);
-  throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
