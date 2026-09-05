@@ -92,7 +92,7 @@ export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
     if (alumnos.length === 0) {return undefined;}
 
     return alumnos.reduce((alumno, mejornota) =>
-      alumno.nota > mejornota.nota ? alumno : mejornota);
+      alumno.nota >= mejornota.nota ? alumno : mejornota);
     
 }
 
@@ -156,7 +156,7 @@ export function cantidadAprobados(alumnos: Alumno[]): number {
 // Calcular la suma de las edades de todos los alumnos.
 // Resolver utilizando reduce.
 export function sumarEdades(alumnos: Alumno[]): number {
-  return alumnos.reduce((suma, alumno) => suma + alumno.nota, 0);
+  return alumnos.reduce((suma, alumno) => suma + alumno.edad, 0);
 }
 
 // -----------------------------------------------------------------------------
