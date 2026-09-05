@@ -13,28 +13,31 @@ export abstract class Personaje {
         public nombre: string,
         public vida: number,
         public ataque: number
-    ) {}
+    ) {  }
 
     abstract atacar(objetivo: Personaje): void;
 }
 
 export class Guerrero extends Personaje {
     atacar(objetivo: Personaje): void {
-        // TODO: aplicar daño = this.ataque a objetivo.vida (sin bajar de 0)
-        throw new Error("Implementar");
+        if (objetivo.vida > 0) {
+            objetivo.vida -= this.ataque;
+        }
     }
 }
 
 export class Mago extends Personaje {
     atacar(objetivo: Personaje): void {
-        // TODO: aplicar daño = Math.round(this.ataque * 1.5)
-        throw new Error("Implementar");
+        if (objetivo.vida > 0) {
+            objetivo.vida -= Math.round(this.ataque*1.5);
+        }
     }
 }
 
 export class Arquero extends Personaje {
     atacar(objetivo: Personaje): void {
-        // TODO: aplicar daño = Math.round(this.ataque * 0.8)
-        throw new Error("Implementar");
+        if (objetivo.vida > 0) {
+            objetivo.vida -= Math.round(this.ataque*0.8)
+        }
     }
 }
