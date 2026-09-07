@@ -88,11 +88,13 @@ export function calcularPromedio(alumnos: Alumno[]): number {
 // Devolver el alumno que tenga la nota más alta.
 // Si el arreglo está vacío, devolver undefined.
 export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
-    if (alumnos.length === 0) {return undefined;}
+  if (alumnos.length === 0) {
+    return undefined;
+  }
 
-    return alumnos.reduce((alumno, mejornota) =>
-      alumno.nota >= mejornota.nota ? alumno : mejornota);
-    
+  return alumnos.reduce((alumno, mejornota) =>
+    alumno.nota >= mejornota.nota ? alumno : mejornota,
+  );
 }
 
 // -----------------------------------------------------------------------------
@@ -210,9 +212,12 @@ export function transformar<T, R>(
 // Ejemplo:
 // filtrar([1, 2, 3, 4], n => n % 2 === 0)
 // -> [2, 4]
-export function filtrar<T>(elementos: T[],callback: (elemento: T) => boolean,): T[] {
-    const elementosTrue = elementos.filter(callback);
-    return elementosTrue;
+export function filtrar<T>(
+  elementos: T[],
+  callback: (elemento: T) => boolean,
+): T[] {
+  const elementosTrue = elementos.filter(callback);
+  return elementosTrue;
 }
 
 // -----------------------------------------------------------------------------
@@ -242,10 +247,8 @@ export function calcularTotal(
   alumnos: Alumno[],
   callback: (alumno: Alumno) => number,
 ): number {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.reduce((total, alumno) => total + callback(alumno), 0);
 }
-
 // -----------------------------------------------------------------------------
 // EJERCICIO 19 - Agrupar alumnos por ciudad
 // -----------------------------------------------------------------------------
@@ -262,17 +265,21 @@ export function calcularTotal(
 //
 // Resolver utilizando reduce.
 export function agruparPorCiudad(alumnos: Alumno[]): Record<string, Alumno[]> {
-  const alumnosPorCiudad = alumnos.reduce((acumulador, alumno) => {
-    if(!(acumulador[alumno.ciudad])) {
-        acumulador[alumno.ciudad]=[];}
+  const alumnosPorCiudad = alumnos.reduce(
+    (acumulador, alumno) => {
+      if (!acumulador[alumno.ciudad]) {
+        acumulador[alumno.ciudad] = [];
+      }
 
-    acumulador[alumno.ciudad].push(alumno);
+      acumulador[alumno.ciudad].push(alumno);
 
-    return acumulador;} , {} as Record<string, Alumno[]>);
+      return acumulador;
+    },
+    {} as Record<string, Alumno[]>,
+  );
 
-    return alumnosPorCiudad;
+  return alumnosPorCiudad;
 }
-
 
 // -----------------------------------------------------------------------------
 // EJERCICIO 20 - Estadísticas generales
