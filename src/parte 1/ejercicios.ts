@@ -42,7 +42,6 @@ export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
     (alumno) => "${alumno.nombre} ${alumno.apellido}",
   );
   return NombresCompletos;
-  throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
