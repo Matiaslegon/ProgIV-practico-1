@@ -11,37 +11,34 @@
  * la de la subclase concreta? ¿Por qué?
  */
 export class Vehiculo {
-    constructor(
-        public marca: string,
-        public modelo: string
-    ) {}
+  constructor(
+    public marca: string,
+    public modelo: string,
+  ) {}
 
-    acelerar(): void {
-        console.log(`${this.marca} ${this.modelo} está acelerando`);
-    }
+  acelerar(): void {
+    console.log(`${this.marca} ${this.modelo} está acelerando`);
+  }
 
-    frenar(): void {
-        console.log(`${this.marca} ${this.modelo} está frenando`);
-    }
+  frenar(): void {
+    console.log(`${this.marca} ${this.modelo} está frenando`);
+  }
 }
 
 export class Auto extends Vehiculo {
-    acelerar(): void {
-        // TODO: loguear (console.log) un mensaje que mencione "auto"
-        throw new Error("Implementar");
-    }
+  acelerar(): void {
+    console.log(`${this.marca} ${this.modelo}: el auto acelera`);
+  }
 }
 
 export class Moto extends Vehiculo {
-    acelerar(): void {
-        // TODO: loguear un mensaje que mencione "moto"
-        throw new Error("Implementar");
-    }
+  acelerar(): void {
+    console.log(`${this.marca} ${this.modelo}: la moto acelera`);
+  }
 }
 
 export class Camion extends Vehiculo {
-    acelerar(): void {
-        // TODO: loguear un mensaje que mencione "camión"
-        throw new Error("Implementar");
-    }
+  acelerar(): void {
+    console.log(`${this.marca} ${this.modelo}: el camion acelera`);
+  }
 }
