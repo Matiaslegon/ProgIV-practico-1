@@ -181,8 +181,9 @@ export function calcularPromedioPorCiudad(
   alumnos: Alumno[],
   ciudad: string,
 ): number {
-  // TODO
-  throw new Error("Implementar");
+  const alumnosciudad= obtenerAlumnosDeCiudad(alumnos,ciudad);
+  if (alumnosciudad.length===0) {return 0}
+  return calcularPromedio(alumnosciudad)
 }
 
 // -----------------------------------------------------------------------------
@@ -270,7 +271,7 @@ export function agruparPorCiudad(alumnos: Alumno[]): Record<string, Alumno[]> {
         acumulador[alumno.ciudad] = [];
       }
 
-      acumulador[alumno.ciudad].push(alumno);
+      acumulador[alumno.ciudad]?.push(alumno);
 
       return acumulador;
     },
@@ -301,8 +302,13 @@ export interface Estadisticas {
 }
 
 export function obtenerEstadisticas(alumnos: Alumno[]): Estadisticas {
-  // TODO
-  throw new Error("Implementar");
+  const cantidadTotal:number = alumnos.length;
+  const cantidadAprobados:number = obtenerAprobados(alumnos).length;
+  const cantidadDesaprobados: number = cantidadTotal - cantidadAprobados;
+  const promedio: number = calcularPromedio(alumnos);
+  const mejorAlumno: Alumno | undefined = obtenerMejorAlumno(alumnos); 
+
+  return {cantidadTotal, cantidadAprobados, cantidadDesaprobados, promedio, mejorAlumno};
 }
 
 // -----------------------------------------------------------------------------
