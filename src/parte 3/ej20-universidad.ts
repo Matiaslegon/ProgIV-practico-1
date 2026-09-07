@@ -21,110 +21,118 @@
  */
 
 export abstract class Persona {
-    constructor(
-        public legajo: number,
-        public nombre: string,
-        public apellido: string,
-        public email: string
-    ) {}
+  constructor(
+    public legajo: number,
+    public nombre: string,
+    public apellido: string,
+    public email: string,
+  ) {}
 
-    abstract obtenerInformacion(): string;
+  abstract obtenerInformacion(): string;
 }
 
 export class Materia {
-    private alumnosInscriptos: Alumno[] = [];
-    private docentesAsignados: Docente[] = [];
+  private alumnosInscriptos: Alumno[] = [];
+  private docentesAsignados: Docente[] = [];
 
-    constructor(
-        public codigo: number,
-        public nombre: string,
-        public horas: number
-    ) {}
+  constructor(
+    public codigo: number,
+    public nombre: string,
+    public horas: number,
+  ) {}
 
-    inscribirAlumno(alumno: Alumno): void {
-        // TODO: agregar el alumno si no está ya inscripto (comparar por legajo).
-        throw new Error("Implementar");
+  estaPresente(persona: Persona): boolean {
+    let esta = false;
+    if (persona instanceof Alumno) {
+      esta = this.alumnosInscriptos.some((alumno) => alumno.legajo === persona.legajo);
+    } else {
+      esta = this.docentesAsignados.some((docente) => docente.legajo === persona.legajo);
     }
 
-    quitarAlumno(alumno: Alumno): void {
-        // TODO: quitar el alumno de la lista, si está.
-        throw new Error("Implementar");
-    }
+    return esta;
+  }
 
-    asignarDocente(docente: Docente): void {
-        // TODO: agregar el docente si no está ya asignado (comparar por legajo).
-        throw new Error("Implementar");
-    }
+  inscribirAlumno(alumno: Alumno): void {
+    if (!this.estaPresente(alumno)) this.alumnosInscriptos.push(alumno);
+  }
 
-    getAlumnosInscriptos(): Alumno[] {
-        // TODO: devolver una copia, no la referencia interna.
-        throw new Error("Implementar");
+  quitarAlumno(alumno: Alumno): void {
+    if (this.estaPresente(alumno)) {
+      this.alumnosInscriptos = this.alumnosInscriptos.filter((al) => al.legajo !== alumno.legajo);
     }
+  }
 
-    getDocentesAsignados(): Docente[] {
-        // TODO: devolver una copia, no la referencia interna.
-        throw new Error("Implementar");
-    }
+  asignarDocente(docente: Docente): void {
+    if (!this.estaPresente(docente)) this.docentesAsignados.push(docente);
+  }
+
+  getAlumnosInscriptos(): Alumno[] {
+    return [...this.alumnosInscriptos];
+  }
+
+  getDocentesAsignados(): Docente[] {
+    return [...this.docentesAsignados];
+  }
 }
 
 export class Alumno extends Persona {
-    private materias: Materia[] = [];
+  private materias: Materia[] = [];
 
-    constructor(legajo: number, nombre: string, apellido: string, email: string) {
-        super(legajo, nombre, apellido, email);
-    }
+  constructor(legajo: number, nombre: string, apellido: string, email: string) {
+    super(legajo, nombre, apellido, email);
+  }
 
-    inscribirse(materia: Materia): void {
-        // TODO: agregar la materia a este alumno (si no estaba ya) y avisarle
-        // a la materia llamando a materia.inscribirAlumno(this).
-        throw new Error("Implementar");
+  inscribirse(materia: Materia): void {
+    if (!materia.estaPresente(this)) {
+      this.materias.push(materia);
+      materia.inscribirAlumno(this);
     }
+  }
 
-    quitarMateria(materia: Materia): void {
-        // TODO: quitar la materia de este alumno y avisarle a la materia
-        // llamando a materia.quitarAlumno(this).
-        throw new Error("Implementar");
+  quitarMateria(materia: Materia): void {
+    // TODO: quitar la materia de este alumno y avisarle a la materia
+    // llamando a materia.quitarAlumno(this).
+    if (materia.estaPresente(this)) {
+      this.materias = this.materias.filter((mat) => mat.codigo !== materia.codigo);
+      materia.quitarAlumno(this);
     }
+  }
 
-    getMaterias(): Materia[] {
-        // TODO: devolver una copia, no la referencia interna.
-        throw new Error("Implementar");
-    }
+  getMaterias(): Materia[] {
+    return [...this.materias];
+  }
 
-    obtenerInformacion(): string {
-        // TODO: devolver un string que incluya nombre, apellido, legajo y
-        // la cantidad de materias inscriptas, mencionando "Alumno".
-        throw new Error("Implementar");
-    }
+  obtenerInformacion(): string {
+    return `Alumno: ${this.nombre} ${this.apellido}, Legajo ${this.legajo}, Materias inscriptas: ${this.materias}`;
+  }
 }
 
 export class Docente extends Persona {
-    private materiasAsignadas: Materia[] = [];
+  private materiasAsignadas: Materia[] = [];
 
-    constructor(
-        legajo: number,
-        nombre: string,
-        apellido: string,
-        email: string,
-        public especialidad: string
-    ) {
-        super(legajo, nombre, apellido, email);
-    }
+  constructor(
+    legajo: number,
+    nombre: string,
+    apellido: string,
+    email: string,
+    public especialidad: string,
+  ) {
+    super(legajo, nombre, apellido, email);
+    this.especialidad = especialidad;
+  }
 
-    asignarMateria(materia: Materia): void {
-        // TODO: agregar la materia a este docente (si no estaba ya) y
-        // avisarle a la materia llamando a materia.asignarDocente(this).
-        throw new Error("Implementar");
+  asignarMateria(materia: Materia): void {
+    if (!materia.estaPresente(this)) {
+      this.materiasAsignadas.push(materia);
+      materia.asignarDocente(this);
     }
+  }
 
-    getMateriasAsignadas(): Materia[] {
-        // TODO: devolver una copia, no la referencia interna.
-        throw new Error("Implementar");
-    }
+  getMateriasAsignadas(): Materia[] {
+    return [...this.materiasAsignadas];
+  }
 
-    obtenerInformacion(): string {
-        // TODO: devolver un string que incluya nombre, apellido, legajo y
-        // especialidad, mencionando "Docente".
-        throw new Error("Implementar");
-    }
+  obtenerInformacion(): string {
+    return `Docente ${this.nombre} ${this.apellido}, Legajo: ${this.legajo}, Especialidad: ${this.especialidad}, Materias Asignadas: ${this.materiasAsignadas}`;
+  }
 }

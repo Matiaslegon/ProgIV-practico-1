@@ -23,6 +23,7 @@ export class Guerrero extends Personaje {
         if (objetivo.vida > 0) {
             objetivo.vida -= this.ataque;
         }
+        if (objetivo.vida < 0) {objetivo.vida=0}
     }
 }
 
@@ -31,6 +32,7 @@ export class Mago extends Personaje {
         if (objetivo.vida > 0) {
             objetivo.vida -= Math.round(this.ataque*1.5);
         }
+        if (objetivo.vida < 0) {objetivo.vida=0}
     }
 }
 
@@ -39,5 +41,6 @@ export class Arquero extends Personaje {
         if (objetivo.vida > 0) {
             objetivo.vida -= Math.round(this.ataque*0.8)
         }
+        if (objetivo.vida < 0) {objetivo.vida=0}
     }
 }
