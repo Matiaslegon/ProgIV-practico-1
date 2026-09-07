@@ -39,7 +39,7 @@ export function obtenerNombres(alumnos: Alumno[]): string[] {
 // ["Juan Pérez", "María García", ...]
 export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
   const NombresCompletos = alumnos.map(
-    (alumno) => "${alumno.nombre} ${alumno.apellido}",
+    (alumno) => `${alumno.nombre} ${alumno.apellido}`,
   );
   return NombresCompletos;
 }
